@@ -9,7 +9,7 @@ from kivy.core.audio import SoundLoader
 from kivy.uix.label import Label
 import random
 
-Window.size = (400,600)
+Window.size = (620,1024)
 
 score = 10
 

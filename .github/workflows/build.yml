@@ -15,13 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install buildozer
-
       - name: Build APK
         run: |
+          export BUILDOZER_WARN_ON_ROOT=0
+          export PIP_CACHE_DIR=/tmp/.cache
+          mkdir -p $PIP_CACHE_DIR
           yes | buildozer -v android debug
 
       - name: Upload APK

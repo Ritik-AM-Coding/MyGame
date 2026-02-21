@@ -1,16 +1,32 @@
-[app]
-title = MyGame
-package.name = mygame
-package.domain = org.ritik
+name: Build APK
 
-version = 0.1
+on:
+  push:
+    branches:
+      - main
 
-source.dir = .
-source.include_exts = py,png,jpg,kv,mp3,wav
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-requirements = python3,kivy
+    container:
+      image: kivy/buildozer:latest
 
-orientation = portrait
-fullscreen = 0
+    steps:
+      - uses: actions/checkout@v4
 
-android.permissions = INTERNET
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install buildozer
+
+      - name: Build APK
+        run: |
+          buildozer init || true
+          buildozer -v android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: bin/*.apk

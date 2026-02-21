@@ -1,7 +1,9 @@
 [app]
 title = MyGame
 package.name = mygame
-package.domain = org.yourname
+package.domain = org.ritik
+
+version = 0.1
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,mp3,wav
@@ -12,7 +14,3 @@ orientation = portrait
 fullscreen = 0
 
 android.permissions = INTERNET
-
-[buildozer]
-log_level = 2
-warn_on_root = 1
